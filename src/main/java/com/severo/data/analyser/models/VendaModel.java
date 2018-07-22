@@ -16,14 +16,27 @@ public class VendaModel {
         this.listVenda = new ArrayList<>();
     }
 
+    /**
+     * 
+     * @param venda
+     */
     public void add(Venda venda){
         listVenda.add(venda);
     }
 
+    /**
+     * 
+     * @return
+     */
     public List<Venda> getAll(){
         return listVenda;
     }
 
+    /**
+     * 
+     * @param vendaItem
+     * @param vendaId
+     */
     public void addItemSale(VendaItem vendaItem, String vendaId){
         listVenda.forEach(venda -> {
             if(venda.getId().equals(vendaId)){

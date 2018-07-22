@@ -25,6 +25,14 @@ public class LeitorArquivos {
 	@Value("${data.analyser.diretorio.entrada.dados}")
 	private String diretorioEntradaDados;
 	
+	@Value("${data.analyser.extensao.arquivo.entrada}")
+	private String extensaoArquivoEntrada;
+
+	@Value("${data.analyser.separador.dados}")
+	private String separador;
+	
+	@Value("${data.analyser.caminho.execucao.aplicacao}")
+	private String caminhoExecucao;	
 	
     /**
      * 
@@ -38,7 +46,7 @@ public class LeitorArquivos {
         }
         return Files.walk(Paths.get(getUrl(diretorioEntradaDados)))
                 .filter(Files::isRegularFile)
-                .filter(path -> path.toString().toLowerCase().endsWith(".dat"))
+                .filter(path -> path.toString().toLowerCase().endsWith(extensaoArquivoEntrada))
                 .filter(path -> !path.toString().toLowerCase().endsWith("[PROCESSADO]"))
                 .map(Path::toFile)
                 .collect(Collectors.toList());
@@ -53,7 +61,7 @@ public class LeitorArquivos {
     public void processar(Factory factory, File arquivo) {
         try {
             Files.readAllLines(arquivo.toPath()).forEach(line->{
-                factory.processarParsers(Arrays.asList(line.split("ç")));
+                factory.processarParsers(Arrays.asList(line.split(separador)));
             });
            arquivo.renameTo(new File(arquivo.getAbsoluteFile().toString()+"[PROCESSADO]"));
         } catch (IOException e2) {
@@ -67,7 +75,7 @@ public class LeitorArquivos {
      * @return
      */
     public String getUrl(String relativeUrl){
-        String urlAbsolute = System.getProperty("user.home");
+        String urlAbsolute = System.getProperty(caminhoExecucao);
         return MessageFormat.format(relativeUrl, urlAbsolute);
     }    
 }

@@ -15,6 +15,10 @@ public class ClienteModel {
         this.listaCliente = new ArrayList<Cliente>();
     }
 
+    /**
+     * 
+     * @param newCliente
+     */
     public void add(Cliente newCliente){
         boolean isJaExiste = listaCliente.stream().anyMatch(oldCliente -> isNomeJaExiste(newCliente, oldCliente));
 
@@ -23,10 +27,20 @@ public class ClienteModel {
         }
     }
 
+    /**
+     * 
+     * @param newCustomer
+     * @param oldCustomer
+     * @return
+     */
     private boolean isNomeJaExiste(Cliente newCustomer, Cliente oldCustomer) {
         return oldCustomer.getNome().toUpperCase().equals(newCustomer.getNome().toUpperCase());
     }
 
+    /**
+     * 
+     * @return
+     */
     public List<Cliente> getAll(){
         return listaCliente;
     }

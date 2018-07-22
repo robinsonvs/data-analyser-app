@@ -24,6 +24,7 @@ public class GeradorRelatorio {
 
 	@Value("${data.analyser.diretorio.saida.dados}")
 	private String diretorioSaidaEntradaDados;	
+
 	
 	@Autowired
 	LeitorArquivos arquivoUtil;

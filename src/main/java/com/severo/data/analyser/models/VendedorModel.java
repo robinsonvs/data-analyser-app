@@ -16,6 +16,10 @@ public class VendedorModel {
         this.listaVendedor = new ArrayList<Vendedor>();
     }
 
+    /**
+     * 
+     * @param newVendedor
+     */
     public void add(Vendedor newVendedor){
         boolean isJaExiste = isExisteVendedor(newVendedor);
         if(!isJaExiste){
@@ -23,6 +27,11 @@ public class VendedorModel {
         }
     }
 
+    /**
+     * 
+     * @param newVendedor
+     * @return
+     */
     private boolean isExisteVendedor(Vendedor newVendedor) {
         return listaVendedor.stream()
                 .anyMatch(oldVendedor -> {
@@ -37,16 +46,31 @@ public class VendedorModel {
                 });
     }
 
+    /**
+     * 
+     * @param newVendedor
+     * @param oldVendedor
+     */
     private void atualizaVendedor(Vendedor newVendedor, Vendedor oldVendedor) {
         oldVendedor.setCpf(newVendedor.getCpf());
         oldVendedor.setSalario(newVendedor.getSalario());
         oldVendedor.setId(newVendedor.getId());
     }
 
+    /**
+     * 
+     * @return
+     */
     public List<Vendedor> getAll(){
         return listaVendedor;
     }
 
+    /**
+     * 
+     * @param newVendedor
+     * @param vendedor
+     * @return
+     */
     private boolean isNomeJaExiste(Vendedor newVendedor, Vendedor vendedor) {
         return vendedor.getNome().toUpperCase().equals(newVendedor.getNome().toUpperCase());
     }

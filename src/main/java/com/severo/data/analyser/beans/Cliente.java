@@ -1,8 +1,6 @@
 package com.severo.data.analyser.beans;
 
-import java.io.Serializable;
-
-public class Cliente implements Serializable, IGenericBean {
+public class Cliente implements IGenericBean {
     private String tipo;
     private String cnpj;
     private String nome;
@@ -22,86 +20,62 @@ public class Cliente implements Serializable, IGenericBean {
         this.areaDeTrabalho = areaDeTrabalho;
     }
 
+	/**
+	 * @return the tipo
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 
+	/**
+	 * @param tipo the tipo to set
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * @return the cnpj
+	 */
 	public String getCnpj() {
 		return cnpj;
 	}
 
+	/**
+	 * @param cnpj the cnpj to set
+	 */
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
+	/**
+	 * @return the nome
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * @param nome the nome to set
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+	/**
+	 * @return the areaDeTrabalho
+	 */
 	public String getAreaDeTrabalho() {
 		return areaDeTrabalho;
 	}
 
+	/**
+	 * @param areaDeTrabalho the areaDeTrabalho to set
+	 */
 	public void setAreaDeTrabalho(String areaDeTrabalho) {
 		this.areaDeTrabalho = areaDeTrabalho;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((areaDeTrabalho == null) ? 0 : areaDeTrabalho.hashCode());
-		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		if (areaDeTrabalho == null) {
-			if (other.areaDeTrabalho != null)
-				return false;
-		} else if (!areaDeTrabalho.equals(other.areaDeTrabalho))
-			return false;
-		if (cnpj == null) {
-			if (other.cnpj != null)
-				return false;
-		} else if (!cnpj.equals(other.cnpj))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (tipo == null) {
-			if (other.tipo != null)
-				return false;
-		} else if (!tipo.equals(other.tipo))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Cliente [tipo=" + tipo + ", cnpj=" + cnpj + ", nome=" + nome + ", areaDeTrabalho=" + areaDeTrabalho
-				+ "]";
-	}
 
     
  

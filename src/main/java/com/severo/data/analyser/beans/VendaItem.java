@@ -1,9 +1,8 @@
 package com.severo.data.analyser.beans;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class VendaItem implements Serializable, IGenericBean {
+public class VendaItem implements IGenericBean {
     private String id;
     private Long quantidade;
     private BigDecimal preco;
@@ -20,33 +19,46 @@ public class VendaItem implements Serializable, IGenericBean {
         this.preco = preco;
     }
 
+	/**
+	 * @return the id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the quantidade
+	 */
 	public Long getQuantidade() {
 		return quantidade;
 	}
 
+	/**
+	 * @param quantidade the quantidade to set
+	 */
 	public void setQuantidade(Long quantidade) {
 		this.quantidade = quantidade;
 	}
 
+	/**
+	 * @return the preco
+	 */
 	public BigDecimal getPreco() {
 		return preco;
 	}
 
+	/**
+	 * @param preco the preco to set
+	 */
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
-	}
-
-	@Override
-	public String toString() {
-		return "VendaItem [id=" + id + ", quantidade=" + quantidade + ", preco=" + preco + "]";
 	}
 
 
