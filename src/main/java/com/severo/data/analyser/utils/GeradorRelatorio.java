@@ -1,7 +1,15 @@
 package com.severo.data.analyser.utils;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.severo.data.analyser.beans.Venda;
@@ -10,30 +18,59 @@ import com.severo.data.analyser.beans.Vendedor;
 import com.severo.data.analyser.factory.Factory;
 
 @Component
-public class Relatorio {
+public class GeradorRelatorio {
+	
+	private static final Logger LOGGER = Logger.getLogger(GeradorRelatorio.class.getName());
 
-    public Long quantidadeTotalClientes;
-    public Long quantidadeAtualClientesNoArquivo;
-    public Long quantidadeTotalVendedores;
-    public Long quantidadeTotalVendedoresNoArquivo;
-    public String piorVendedor;
-    public String idDaMelhorVenda;
+	@Value("${data.analyser.diretorio.saida.dados}")
+	private String diretorioSaidaEntradaDados;	
+	
+	@Autowired
+	LeitorArquivos arquivoUtil;
+	
+    public Long quantidadeTotalClientes = 0L;
+    public Long quantidadeAtualClientesNoArquivo = 0L;
+    public Long quantidadeTotalVendedores = 0L;
+    public Long quantidadeTotalVendedoresNoArquivo = 0L;
+    public String piorVendedor = "";
+    public String idDaMelhorVenda = "";
 
-    public Relatorio() {
-        this.quantidadeTotalClientes = 0L;
-        this.quantidadeAtualClientesNoArquivo = 0L;
-        this.quantidadeTotalVendedores = 0L;
-        this.quantidadeTotalVendedoresNoArquivo = 0L;
-        this.piorVendedor = "";
-        this.idDaMelhorVenda = "";
-    }
+
+    /**
+     * 
+     * @param factory
+     * @param nomeArquivo
+     * @param relatorio
+     */
+    public void processar(Factory factory, String nomeArquivo, GeradorRelatorio relatorio){
+        try {
+            BufferedWriter writer = null;
+            File arquivoSaida = new File(arquivoUtil.getUrl(diretorioSaidaEntradaDados)+"/"+nomeArquivo+".done.dat");
+            FileWriter fw = new FileWriter(arquivoSaida);
+            writer = new BufferedWriter(fw);
+
+            writer.write("Quantidade de Clientes no Arquivo de Entrada : "+String.valueOf(relatorio.getQuantidadeAtualClientesNoArquivo(factory)));
+            writer.newLine();
+            writer.write("Quantidade de Vendedores no Arquivo de Entrada : "+String.valueOf(relatorio.getQuantidadeTotalVendedoresNoArquivo(factory)));
+            writer.newLine();
+            writer.write("Id da Venda Mais Cara: "+relatorio.getIdMelhorVenda(factory));
+            writer.newLine();
+            writer.write("Pior Vendedor : "+relatorio.getPiorVendedor(factory));
+            writer.newLine();
+            writer.flush();
+            writer.close();
+
+        }catch(IOException e){
+           LOGGER.log(Level.INFO, "Diretório indisponível.", e);
+        }
+    }    
 
     /**
      * 
      * @param modelFactory
      * @return
      */
-    public Long getQuantidadeAtualClientesNoArquivo(Factory modelFactory) {
+    private Long getQuantidadeAtualClientesNoArquivo(Factory modelFactory) {
         quantidadeAtualClientesNoArquivo = Long.valueOf(modelFactory.getClienteModel().getAll().size())-quantidadeTotalClientes;
         quantidadeTotalClientes = Long.valueOf(modelFactory.getClienteModel().getAll().size());
         return quantidadeAtualClientesNoArquivo;
@@ -44,7 +81,7 @@ public class Relatorio {
      * @param modelFactory
      * @return
      */
-    public Long getQuantidadeTotalVendedoresNoArquivo(Factory modelFactory) {
+    private Long getQuantidadeTotalVendedoresNoArquivo(Factory modelFactory) {
         quantidadeTotalVendedoresNoArquivo = Long.valueOf(modelFactory.getVendedorModel().getAll().size())-quantidadeTotalVendedores;
         quantidadeTotalVendedores = Long.valueOf(modelFactory.getVendedorModel().getAll().size());
         return quantidadeTotalVendedoresNoArquivo;
@@ -55,7 +92,7 @@ public class Relatorio {
      * @param modelFactory
      * @return
      */
-    public String getPiorVendedor(Factory modelFactory) {
+    private String getPiorVendedor(Factory modelFactory) {
         String piorVendedor="";
         BigDecimal quantidade = new BigDecimal("0.0");
         BigDecimal quantidadeMinima = new BigDecimal("0.0");
@@ -95,7 +132,7 @@ public class Relatorio {
      * @param modelFactory
      * @return
      */
-    public String getIdMelhorVenda(Factory modelFactory) {
+    private String getIdMelhorVenda(Factory modelFactory) {
         String idMaiorVenda="";
         BigDecimal quantidade = new BigDecimal("0.0");
         BigDecimal quantidadeMaxima = new BigDecimal("0.0");

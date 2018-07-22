@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.severo.data.analyser.factory.Factory;
 import com.severo.data.analyser.utils.Processador;
-import com.severo.data.analyser.utils.Relatorio;
+import com.severo.data.analyser.utils.GeradorRelatorio;
 
 @Component
 public class Starter {
@@ -17,7 +17,7 @@ public class Starter {
     private Factory factory;
 	
 	@Autowired
-    private Relatorio relatorio;
+    private GeradorRelatorio relatorio;
 
     public void executar(){
         processador.processar(factory, relatorio);
