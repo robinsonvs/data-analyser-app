@@ -5,6 +5,6 @@ API de leitura e analise dados - Java / Spring Boot.
 Certifique-se de ter o Git instalado.
 ```
 git clone https://github.com/robinsonvs/data-analyser-app.git
-cd dataAnalyserApp
-mvn spring-boot:run
+cd data-analyser-app
+mvn spring-boot:run ou ./mvnw spring-boot:run
 ```
