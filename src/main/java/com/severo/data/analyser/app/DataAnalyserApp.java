@@ -8,8 +8,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.severo.data.analyser.factory.Factory;
 import com.severo.data.analyser.models.ClienteModel;
-import com.severo.data.analyser.models.VendaModel;
-import com.severo.data.analyser.models.VendedorModel;
 import com.severo.data.analyser.parsers.ClienteParser;
 import com.severo.data.analyser.parsers.VendaParser;
 import com.severo.data.analyser.parsers.VendedorParser;
@@ -37,14 +35,7 @@ public class DataAnalyserApp {
 	
 	@Bean
 	public Factory factor() {
-		return new Factory(
-				new ClienteParser(),
-				new VendaParser(), 
-				new VendedorParser(),
-				new ClienteModel(),
-				new VendaModel(),
-				new VendedorModel()	
-				);
+		return new Factory();
 	}
 	
 	@Bean

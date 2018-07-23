@@ -28,9 +28,6 @@ public class LeitorArquivos {
 	@Value("${data.analyser.extensao.arquivo.entrada}")
 	private String extensaoArquivoEntrada;
 
-	@Value("${data.analyser.separador.dados}")
-	private String separador;
-	
 	@Value("${data.analyser.caminho.execucao.aplicacao}")
 	private String caminhoExecucao;	
 	
@@ -61,7 +58,7 @@ public class LeitorArquivos {
     public void processar(Factory factory, File arquivo) {
         try {
             Files.readAllLines(arquivo.toPath()).forEach(line->{
-                factory.processarParsers(Arrays.asList(line.split(separador)));
+                factory.processarParsers(Arrays.asList(line.split("ç")));
             });
            arquivo.renameTo(new File(arquivo.getAbsoluteFile().toString()+"[PROCESSADO]"));
         } catch (IOException e2) {

@@ -41,6 +41,11 @@ public class Factory {
     private VendedorModel vendedorModel;
 
 
+    public Factory() {
+    	
+    }
+    
+    
     public Factory(
     		ClienteParser clienteParser, 
     		VendaParser vendaParser, 

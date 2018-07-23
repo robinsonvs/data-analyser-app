@@ -1,4 +1,4 @@
-package com.severo.data.analyser.app;
+package com.severo.data.analyser.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -72,7 +72,7 @@ public class AppTests {
 	}
 	
 	
-	@Ignore
+	@Test
 	public void vendaParserTest(){
 		List<String> dados = new ArrayList<>();		
 		VendaParser vendaParser = new VendaParser();
@@ -82,7 +82,7 @@ public class AppTests {
 		assertEquals(venda.getVendedor().getNome(), "Diego");
 		
 		VendaItem vendaItem = new VendaItem("1", 10L, new BigDecimal("100"));
-		Assert.assertTrue(venda.getVendaItem().contains(vendaItem));
+		Assert.assertTrue(venda.getVendaItem().get(0).getPreco().compareTo(vendaItem.getPreco()) == 0);
 	}
 	
 	
@@ -104,7 +104,7 @@ public class AppTests {
 		
 		vendas.sort((p1, p2) -> p1.getId().compareTo(p2.getId()));
 		
-		Venda vendaMaisCara = vendas.get(0);
+		Venda vendaMaisCara = vendas.get(1);
 		assertEquals(vendaMaisCara.getId(), "10");
 	}
 
