@@ -93,7 +93,7 @@ public class GeradorRelatorio {
      * @param modelFactory
      * @return
      */
-    private String getPiorVendedor(Factory modelFactory) {
+    public String getPiorVendedor(Factory modelFactory) {
         String piorVendedor="";
         BigDecimal quantidade = new BigDecimal("0.0");
         BigDecimal quantidadeMinima = new BigDecimal("0.0");
@@ -133,7 +133,7 @@ public class GeradorRelatorio {
      * @param modelFactory
      * @return
      */
-    private String getIdMelhorVenda(Factory modelFactory) {
+    public String getIdMelhorVenda(Factory modelFactory) {
         String idMaiorVenda="";
         BigDecimal quantidade = new BigDecimal("0.0");
         BigDecimal quantidadeMaxima = new BigDecimal("0.0");

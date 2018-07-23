@@ -1,6 +1,6 @@
 # data-analyser-app
 
-API de leitura e analise dados - Java / Spring Boot.
+API de leitura e analise de dados - Java / Spring Boot.
 ### Como executar a aplicação
 Certifique-se de ter o Git instalado.
 ```

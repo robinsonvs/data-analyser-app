@@ -8,17 +8,17 @@ import com.severo.data.analyser.beans.Vendedor;
 
 public class VendedorParser implements IParser{
 
-    private final static int TIPO_ID_INDEX = 0;
-    private final static int CPF_INDEX = 1;
-    private final static int NOME_INDEX = 2;
+    private final static int TIPO = 0;
+    private final static int CPF = 1;
+    private final static int NOME = 2;
     private final static int SALARIO = 3;
 
     @Override
     public IGenericBean parser(List<String> dadosVendedor) {
         IGenericBean vendedor  = new Vendedor(
-                dadosVendedor.get(TIPO_ID_INDEX),
-                dadosVendedor.get(CPF_INDEX),
-                dadosVendedor.get(NOME_INDEX),
+                dadosVendedor.get(TIPO),
+                dadosVendedor.get(CPF),
+                dadosVendedor.get(NOME),
                 new BigDecimal(dadosVendedor.get(SALARIO).replace(",",".")));
 
         return vendedor;

@@ -8,6 +8,10 @@ public class Venda implements IGenericBean {
     private List<VendaItem> vendaItem;
     private Vendedor vendedor;
 
+    public Venda() {
+    	
+    }
+    
     /**
      * 
      * @param tipo

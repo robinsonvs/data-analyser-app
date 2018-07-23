@@ -11,10 +11,10 @@ import com.severo.data.analyser.beans.Vendedor;
 
 public class VendaParser implements IParser{
 
-    private final static int TIPO_ID_INDEX = 0;
-    private final static int ID_INDEX = 1;
-    private final static int ITEMS_INDEX = 2;
-    private final static int NOME_VENDEDOR_INDEX = 3;
+    private final static int TIPO = 0;
+    private final static int ID = 1;
+    private final static int ITEMS_VENDA = 2;
+    private final static int VENDEDOR = 3;
     private final VendaItemParser vendaItemParser;
 
     public VendaParser() {
@@ -31,10 +31,10 @@ public class VendaParser implements IParser{
         });
 
         IGenericBean venda  = new Venda(
-                dadosVenda.get(TIPO_ID_INDEX),
-                dadosVenda.get(ID_INDEX),
+                dadosVenda.get(TIPO),
+                dadosVenda.get(ID),
                 listaDeItensVenda,
-                new Vendedor(dadosVenda.get(NOME_VENDEDOR_INDEX)));
+                new Vendedor(dadosVenda.get(VENDEDOR)));
 
         return venda;
     }
@@ -45,6 +45,6 @@ public class VendaParser implements IParser{
      * @return
      */
     private String clearDadoItemVenda(List<String> dadosVenda) {
-        return dadosVenda.get(ITEMS_INDEX).replace("[","").replace("]","");
+        return dadosVenda.get(ITEMS_VENDA).replace("[","").replace("]","");
     }
 }

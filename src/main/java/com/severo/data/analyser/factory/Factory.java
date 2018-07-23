@@ -41,7 +41,23 @@ public class Factory {
     private VendedorModel vendedorModel;
 
 
-    /**
+    public Factory(
+    		ClienteParser clienteParser, 
+    		VendaParser vendaParser, 
+    		VendedorParser vendedorParser,
+			ClienteModel clienteModel, 
+			VendaModel vendaModel, 
+			VendedorModel vendedorModel) {
+		super();
+		this.clienteParser = clienteParser;
+		this.vendaParser = vendaParser;
+		this.vendedorParser = vendedorParser;
+		this.clienteModel = clienteModel;
+		this.vendaModel = vendaModel;
+		this.vendedorModel = vendedorModel;
+	}
+
+	/**
      * 
      * @param dataModel
      */
