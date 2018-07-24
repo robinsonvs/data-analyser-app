@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.severo.data.analyser.factory.Factory;
-import com.severo.data.analyser.models.ClienteModel;
 import com.severo.data.analyser.parsers.ClienteParser;
 import com.severo.data.analyser.parsers.VendaParser;
 import com.severo.data.analyser.parsers.VendedorParser;
@@ -53,8 +52,4 @@ public class DataAnalyserApp {
 		return new VendedorParser();
 	}	
 	
-	@Bean
-	public ClienteModel clienteModel() {
-		return new ClienteModel();
-	}	
 }

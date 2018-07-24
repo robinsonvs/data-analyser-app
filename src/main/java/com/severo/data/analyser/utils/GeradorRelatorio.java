@@ -29,14 +29,6 @@ public class GeradorRelatorio {
 	@Autowired
 	LeitorArquivos arquivoUtil;
 	
-    public Long quantidadeTotalClientes = 0L;
-    public Long quantidadeAtualClientesNoArquivo = 0L;
-    public Long quantidadeTotalVendedores = 0L;
-    public Long quantidadeTotalVendedoresNoArquivo = 0L;
-    public String piorVendedor = "";
-    public String idDaMelhorVenda = "";
-
-
     /**
      * 
      * @param factory
@@ -45,6 +37,7 @@ public class GeradorRelatorio {
      */
     public void processar(Factory factory, String nomeArquivo, GeradorRelatorio relatorio){
         try {
+        	
             BufferedWriter writer = null;
             File arquivoSaida = new File(arquivoUtil.getUrl(diretorioSaidaEntradaDados)+"/"+nomeArquivo+".done.dat");
             FileWriter fw = new FileWriter(arquivoSaida);
@@ -72,9 +65,7 @@ public class GeradorRelatorio {
      * @return
      */
     private Long getQuantidadeAtualClientesNoArquivo(Factory modelFactory) {
-        quantidadeAtualClientesNoArquivo = Long.valueOf(modelFactory.getClienteModel().getAll().size())-quantidadeTotalClientes;
-        quantidadeTotalClientes = Long.valueOf(modelFactory.getClienteModel().getAll().size());
-        return quantidadeAtualClientesNoArquivo;
+        return Long.valueOf(modelFactory.getClienteModel().getAll().size());
     }
 
     /**
@@ -83,9 +74,7 @@ public class GeradorRelatorio {
      * @return
      */
     private Long getQuantidadeTotalVendedoresNoArquivo(Factory modelFactory) {
-        quantidadeTotalVendedoresNoArquivo = Long.valueOf(modelFactory.getVendedorModel().getAll().size())-quantidadeTotalVendedores;
-        quantidadeTotalVendedores = Long.valueOf(modelFactory.getVendedorModel().getAll().size());
-        return quantidadeTotalVendedoresNoArquivo;
+        return Long.valueOf(modelFactory.getVendedorModel().getAll().size());
     }
 
     /**

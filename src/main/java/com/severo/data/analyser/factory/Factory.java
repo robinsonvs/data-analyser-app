@@ -93,4 +93,10 @@ public class Factory {
     public VendedorModel getVendedorModel() {
         return vendedorModel;
     }
+    
+    public void restart() {
+    	clienteModel.limparListaAnterior();
+    	vendaModel.limparListaAnterior();
+    	vendedorModel.limparListaAnterior();
+    }
 }

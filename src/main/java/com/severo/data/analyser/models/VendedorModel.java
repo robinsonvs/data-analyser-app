@@ -75,5 +75,7 @@ public class VendedorModel {
         return vendedor.getNome().toUpperCase().equals(newVendedor.getNome().toUpperCase());
     }
 
-
+    public void limparListaAnterior() {
+    	listaVendedor.clear();
+    } 
 }

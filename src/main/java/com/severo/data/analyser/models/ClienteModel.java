@@ -44,4 +44,9 @@ public class ClienteModel {
     public List<Cliente> getAll(){
         return listaCliente;
     }
+    
+    
+    public void limparListaAnterior() {
+    	listaCliente.clear();
+    }
 }

@@ -31,7 +31,9 @@ public class Processador {
     public void processar(Factory factory, GeradorRelatorio relatorio) {
         try {
             List<File> arquivos = leitorArquivos.buscarArquivosParaProcessamento();
+            factory.restart();
             for(File arquivo : arquivos){
+            	factory.restart();
             	leitorArquivos.processar(factory, arquivo);
             	geradorRelatorio.processar(factory, arquivo.getName(), relatorio);
             }
